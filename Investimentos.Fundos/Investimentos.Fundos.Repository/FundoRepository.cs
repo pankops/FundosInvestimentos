@@ -15,7 +15,7 @@ namespace Investimentos.Fundos.Repository
         public FundoRepository(FundosContext context) : base(context)
         { }
 
-        public Task<Fundo> ObterFundoPorId(Guid idFundo)
+        public Task<Fundo> ObterPorId(Guid idFundo)
         {
             return context.Fundo.FirstOrDefaultAsync(m => m.IdFundo == idFundo);
         }

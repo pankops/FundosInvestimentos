@@ -9,6 +9,7 @@ namespace Investimentos.Fundos.App.AutoMapper
         public DomainToModelMapping()
         {
             CreateMap<Movimento, MovimentoResponse>();
+            CreateMap<Fundo, FundoResponse>();
         }
     }
 }

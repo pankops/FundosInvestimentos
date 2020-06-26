@@ -1,4 +1,6 @@
+using FluentValidation.AspNetCore;
 using Investimentos.Fundos.Api.Extensions;
+using Investimentos.Fundos.Domain.Parameters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,12 +22,15 @@ namespace Investimentos.Fundos
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            ApiParameters.CarregarParametros();
             services.AddControllers();
             services.AddJsonSetup();
             services.RegisterServices();
             services.AddAutoMapperSetup();
             services.AddSwaggerSetup();
             services.AddDataBaseSetup();
+
+            services.AddMvc().AddFluentValidation((mvcConfiguration => mvcConfiguration.RegisterValidatorsFromAssemblyContaining<Startup>()));
 
             services.AddRouting(options =>
             {

@@ -8,7 +8,8 @@ namespace Investimentos.Fundos.Domain.Repository
 {
     public interface IMovimentoRepository
     {
-        Task Adicionar(Movimento fundo);
+        Task Adicionar(Movimento movimento);
         Task<IEnumerable<Movimento>> ObterTodos();
+        Task<Movimento> ObterPorIdFundoCpf(Guid idFundo, string cpf);
     }
 }

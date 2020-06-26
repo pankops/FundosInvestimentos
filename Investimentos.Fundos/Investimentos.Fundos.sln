@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investimentos.Fundos.App", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investimentos.Fundos.Api", "Investimentos.Fundos.Api\Investimentos.Fundos.Api.csproj", "{38349CF3-0894-41A4-805A-0E335F5AAA31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investimentos.Fundos.Test", "Investimentos.Fundos.Test\Investimentos.Fundos.Test.csproj", "{999D34C6-45AB-47FC-82E4-313D50317EE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investimentos.Fundos.Test", "Investimentos.Fundos.Test\Investimentos.Fundos.Test.csproj", "{CC440750-B50F-40E6-8D50-9DA18E5D1616}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{38349CF3-0894-41A4-805A-0E335F5AAA31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38349CF3-0894-41A4-805A-0E335F5AAA31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38349CF3-0894-41A4-805A-0E335F5AAA31}.Release|Any CPU.Build.0 = Release|Any CPU
-		{999D34C6-45AB-47FC-82E4-313D50317EE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{999D34C6-45AB-47FC-82E4-313D50317EE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{999D34C6-45AB-47FC-82E4-313D50317EE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{999D34C6-45AB-47FC-82E4-313D50317EE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC440750-B50F-40E6-8D50-9DA18E5D1616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC440750-B50F-40E6-8D50-9DA18E5D1616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC440750-B50F-40E6-8D50-9DA18E5D1616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC440750-B50F-40E6-8D50-9DA18E5D1616}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

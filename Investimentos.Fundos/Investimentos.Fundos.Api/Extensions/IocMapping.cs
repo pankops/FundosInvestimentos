@@ -14,8 +14,8 @@ namespace Investimentos.Fundos.Api.Extensions
     {
         public static void RegisterServices(this IServiceCollection services)
         {
-            services.AddScoped<IOperacaoService, OperacaoService>();
-            services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<IMovimentoService, MovimentoService>();
+            services.AddScoped<IFundoService, FundoService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IMovimentoRepository, MovimentoRepository>();
             services.AddScoped<IFundoRepository, FundoRepository>();

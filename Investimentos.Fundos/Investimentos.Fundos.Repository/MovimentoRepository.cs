@@ -14,14 +14,21 @@ namespace Investimentos.Fundos.Repository
         public MovimentoRepository(FundosContext context) : base(context)
         { }
 
+        public async Task Adicionar(Movimento movimento)
+        {
+            await context.Movimento.AddAsync(movimento);
+        }
+
         public async Task<IEnumerable<Movimento>> ObterTodos()
         {
             return await context.Movimento.ToListAsync();
         }
-
-        public async Task Adicionar(Movimento fundo)
+        
+        public Task<Movimento> ObterPorIdFundoCpf(Guid idFundo, string cpf)
         {
-            await context.Movimento.AddAsync(fundo);
+            return context.Movimento
+                    .FirstOrDefaultAsync(m => m.IdFundo == idFundo
+                                        && m.CpfCliente.Equals(cpf));
         }
     }
 }

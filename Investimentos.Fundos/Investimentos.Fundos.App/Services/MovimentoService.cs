@@ -10,21 +10,17 @@ using System.Threading.Tasks;
 
 namespace Investimentos.Fundos.App.Services
 {
-    public class OperacaoService : IOperacaoService
+    public class MovimentoService : IMovimentoService
     {
         private readonly IMovimentoRepository movimentoRepository;
-        private readonly IFundoRepository fundoRepository;
-
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public OperacaoService(IMovimentoRepository movimentoRepository,
-            IFundoRepository fundoRepository,
-            IUnitOfWork unitOfWork,
-            IMapper mapper)
+        public MovimentoService(IMovimentoRepository movimentoRepository,
+                               IUnitOfWork unitOfWork,
+                               IMapper mapper)
         {
             this.movimentoRepository = movimentoRepository;
-            this.fundoRepository = fundoRepository;
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
@@ -45,42 +41,40 @@ namespace Investimentos.Fundos.App.Services
 
         public async Task<MovimentoResponse> Aplicar(MovimentoRequest movimento)
         {
-            var fundo = fundoRepository.ObterFundoPorId(movimento.IdFundo);
-
-            if (fundo == null)
-            {
-                throw new Exception("Fundo não encontrado");
-            }
-
             var entity = mapper.Map<Movimento>(movimento);
             entity.TipoMovimento = TipoMovimento.APLICACAO;
 
             await movimentoRepository.Adicionar(entity);
             await unitOfWork.Salvar();
 
-            var model = mapper.Map<MovimentoResponse>(movimento);
+            var model = mapper.Map<MovimentoResponse>(entity);
 
             return model;
         }
 
         public async Task<MovimentoResponse> Resgatar(MovimentoRequest movimento)
         {
-            var fundo = fundoRepository.ObterFundoPorId(movimento.IdFundo);
-
-            if (fundo == null)
-            {
-                throw new Exception("Fundo não encontrado");
-            }
-
             var entity = mapper.Map<Movimento>(movimento);
             entity.TipoMovimento = TipoMovimento.RESGATE;
 
             await movimentoRepository.Adicionar(entity);
             await unitOfWork.Salvar();
 
-            var model = mapper.Map<MovimentoResponse>(movimento);
+            var model = mapper.Map<MovimentoResponse>(entity);
 
             return model;
+        }
+
+        public async Task<MovimentoResponse> ObterPorIdFundoCpf(Guid idFundo, string cpf)
+        {
+            var entity = await movimentoRepository.ObterPorIdFundoCpf(idFundo, cpf);
+
+            return mapper.Map<MovimentoResponse>(entity);
+        }
+
+        public async Task<bool> ValidarValorMinimoInicial(MovimentoRequest request, FundoResponse fundo)
+        {
+            return await Task.FromResult(request.ValorMovimento >= fundo.InvestimentoInicialMinimo);
         }
     }
 }

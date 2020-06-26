@@ -7,7 +7,7 @@ namespace Investimentos.Fundos.Domain.Repository
 {
     public interface IFundoRepository
     {
+        Task<Fundo> ObterPorId(Guid idFundo);
         Task<IEnumerable<Fundo>> ObterTodos();
-        Task<Fundo> ObterFundoPorId(Guid idFundo);
     }
 }
