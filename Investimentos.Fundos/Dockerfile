@@ -16,4 +16,4 @@ COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "Investimentos.Fundos.Api.dll"]
 
 ENV DB_STRING_CONEXAO="Server={host};Initial Catalog=investimentos;Persist Security Info=False;User ID={usuario};Password={senha};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-ENV EXECUTAR_MIGRATION=true
+ENV EXECUTAR_MIGRATION=false
