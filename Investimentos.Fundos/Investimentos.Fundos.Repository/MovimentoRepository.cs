@@ -21,9 +21,11 @@ namespace Investimentos.Fundos.Repository
 
         public async Task<IEnumerable<Movimento>> ObterTodos()
         {
-            return await context.Movimento.ToListAsync();
+            return await context.Movimento
+                            .Include(m => m.Fundo)
+                            .ToListAsync();
         }
-        
+
         public Task<Movimento> ObterPorIdFundoCpf(Guid idFundo, string cpf)
         {
             return context.Movimento

@@ -33,6 +33,7 @@ namespace Investimentos.Fundos.App.Services
             foreach (var item in entity)
             {
                 var model = mapper.Map<MovimentoResponse>(item);
+                model.NomeFundo = item.Fundo.NomeFundo;
                 movimentos.Add(model);
             }
 

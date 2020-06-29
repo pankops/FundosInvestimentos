@@ -18,7 +18,7 @@ namespace Investimentos.Fundos.Api.Validators
                 .WithMessage("Campo 'IdFundo' deve ser preenchido!");
 
             RuleFor(m => m.CpfCliente)
-                .NotEmpty()
+                .NotEmpty()                
                 .WithMessage("Campo 'CpfCliente' deve ser preenchido!")
                 .IsValidCpf();
             

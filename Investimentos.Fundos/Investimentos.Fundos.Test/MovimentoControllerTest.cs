@@ -9,6 +9,7 @@ using Investimentos.Fundos.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Xunit;
 
 namespace Investimentos.Fundos.Test
@@ -123,7 +124,7 @@ namespace Investimentos.Fundos.Test
         }
 
         [Fact]
-        public async void RetornaBadRequestAplicarFundoValorAcimaMinimo()
+        public async void RetornaOkResultAplicarFundoValorAcimaMinimo()
         {
             //Arrange
             var request = new MovimentoRequest()
@@ -143,7 +144,7 @@ namespace Investimentos.Fundos.Test
         }
 
         [Fact]
-        public async void RetornaBadRequestAplicarSegundaVezFundoValorAbaixoMinimo()
+        public async void RetornaOkResultAplicarSegundaVezFundoValorAbaixoMinimo()
         {
             //Arrange
             var request = new MovimentoRequest()
@@ -172,9 +173,42 @@ namespace Investimentos.Fundos.Test
             Assert.IsType<OkObjectResult>(okObjectResult);
         }
 
-        //testes com campo em branco para aplicação e resgate
-        // teste com valor 0
-        //teste enviar resgate fundo inexistente
-        //teste enviar resgate fundo existente
+        [Fact]
+        public async void RetornaNotFoundResgatarFundoInexistente()
+        {
+            //Arrange
+            var request = new MovimentoRequest()
+            {
+                IdFundo = new Guid("AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA")
+            };
+
+            //Act
+            var resultado = await movimentoController.Resgatar(request);
+            var notFoundResult = resultado.Result as NotFoundObjectResult;
+
+            //Assert
+            Assert.IsType<NotFoundObjectResult>(notFoundResult);
+        }
+
+        [Fact]
+        public async void RetornaOkResultResgatarFundoExistente()
+        {
+
+            //Arrange
+            var request = new MovimentoRequest()
+            {
+                IdFundo = new Guid("413D6804-088C-430D-8652-71D3E5A34C61"),
+                ValorMovimento = 20000,
+                CpfCliente = "87229420091",
+                DataMovimento = DateTime.Now
+            }; 
+
+            //Act
+            var resultado = await movimentoController.Resgatar(request);
+            var notFoundResult = resultado.Result as OkObjectResult;
+
+            //Assert
+            Assert.IsType<OkObjectResult>(notFoundResult);            
+        }
     }
 }

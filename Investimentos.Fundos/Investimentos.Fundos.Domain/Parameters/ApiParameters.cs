@@ -10,8 +10,7 @@ namespace Investimentos.Fundos.Domain.Parameters
 
         public static void CarregarParametros()
         {
-            DbStringConexao = Environment.GetEnvironmentVariable("DB_STRING_CONEXAO");
-
+            DbStringConexao = Environment.GetEnvironmentVariable("DB_STRING_CONEXAO");           
             if (string.IsNullOrEmpty(DbStringConexao))
                 throw new Exception("INVALID PARAMETER DB_STRING_CONEXAO");
         }
