@@ -57,6 +57,12 @@ namespace Investimentos.Fundos
             {
                 endpoints.MapControllers();
             });
+
+            if (ApiParameters.ExecutarMigration)
+                using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    scope.ServiceProvider.GetService<FundosContext>().Database.Migrate();
+                }
         }
     }
 }
